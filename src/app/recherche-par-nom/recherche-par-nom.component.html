@@ -1,0 +1,34 @@
+<div class="container"></div>
+
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2 mt-2 ">
+    <label>Nom Parfum</label>
+    <input type="text" class="form-control" [(ngModel)]="nomParfum" name="nomParfum" class="form-control">
+    <button type="submit" (click)="rechercherParfums()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+    </div>
+    </form>
+
+
+   
+   <div class="card shadow mb-4">
+   <div class="card-body">
+       
+   <table class="table table-striped">
+   <tr> <th>Id</th><th>Nom</th> <th>Prix</th> <th>Taille</th> <th>Marque</th> </tr>
+   <tbody *ngFor="let parfum of parfums">
+   <tr >
+   <td>{{parfum.idParfum}}</td>
+   <td>{{parfum.nomParfum}}</td>
+   <td>{{parfum.prixParfum}}</td>
+   <td>{{parfum.taille}}</td>
+   <td>{{parfum.marque?.nom}}</td>
+<!-- <td><a class="btn btn-danger" (click)="supprimerParfum(parfum)">Supprimer</a></td> -->
+  <!-- <td><a class="btn btn-success" [routerLink]="['/updateParfum',parfum.idParfum]">Modifier</a></td>-->
+   
+   </tr>
+   </tbody>
+   </table>
+   </div>
+   </div>
+
+   

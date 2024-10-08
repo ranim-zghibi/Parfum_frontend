@@ -1,0 +1,16 @@
+<form>
+    <div>
+        <label>ID Marque</label>
+        <input readonly type="text" [(ngModel)]="marque.id" name="id" class="form-control w-25">
+    </div>
+    <div>
+        <label>Nom Marque</label>
+        <input type="text" [(ngModel)]="marque.nom" name="nom" class="form-control"
+            placeholder="Entrez un nom de marque...">
+    </div>
+
+    <div class="mt-2">
+        <button type="submit" [disabled]="!marque.nom" class="btn btn-success"
+            (click)="saveMarque()">{{ ajout ? 'Ajouter' : 'Modifier'}}</button>
+        <button type="submit" class="btn btn-danger" (click)="cancel()">Annuler</button>
+    </div>

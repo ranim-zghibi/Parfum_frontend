@@ -1,0 +1,37 @@
+<div class="container">
+    <div>
+        <h2>Ajouter un Parfum :</h2>
+    </div>
+    <form>
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Parfum</label>
+            <input type="text" [(ngModel)]="newParfum.idParfum" name="idParfum" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Parfum</label>
+            <input type="text" [(ngModel)]="newParfum.nomParfum" name="nomParfum" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Parfum</label>
+            <input type="number" [(ngModel)]="newParfum.prixParfum" name="prixParfum" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Taille du parfum</label>
+            <input type="number" [(ngModel)]="newParfum.taille" name="taille" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Marque</label>
+            <select class="form-control form-control-lg" id="id" name="id" [(ngModel)]="newIdMarque">
+                <option *ngFor="let marque of marques" [value]="marque.id">
+                    {{marque.nom}}
+                </option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="addParfum()" class="btn btn-success">Ajouter</button>
+            <div>
+                <h3>{{message}}</h3>
+            </div>
+        </div>
+    </form>
+</div>
