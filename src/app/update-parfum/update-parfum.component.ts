@@ -33,8 +33,7 @@ export class UpdateParfumComponent implements OnInit {
   updateParfum() {
     this.currentParfum.marque = this.marques.find(marque => marque.id == this.newIdMarque)!;
     this.parfumService.updateParfum(this.currentParfum).subscribe(prod => {
-
-      this.router.navigate(['produits']);
+      this.router.navigate(['parfums']);
     }
     );
   }

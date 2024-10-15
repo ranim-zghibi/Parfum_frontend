@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiURL, apiURLMarque } from './config';
 import { MarqueWrapper } from './models/marqueWrapped.model';
+import { AuthService } from './auth.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,21 +23,23 @@ export class ParfumService {
   parfums?: Parfum[];
   parfum!: Parfum;
   marques !: Marque[];
-  constructor(private http: HttpClient) {
 
-  }
+  constructor(private http: HttpClient,
+    private authService: AuthService
+  ) { }
   listeParfum(): Observable<Parfum[]> {
-    return this.http.get<Parfum[]>(apiURL);
+    return this.http.get<Parfum[]>(apiURL + "/all");
   }
+
   ajouterParfum(parfum: Parfum): Observable<Parfum> {
-    return this.http.post<Parfum>(apiURL, parfum, httpOptions);
+    return this.http.post<Parfum>(apiURL + "/addparfum", parfum);
   }
   supprimerParfum(p: Parfum) {
-    const url = `${apiURL}/${p.idParfum}`;
-    return this.http.delete(url, httpOptions);
+    const url = `${apiURL}/delparfum/${p.idParfum}`;
+    return this.http.delete(url);
   }
   consulterParfum(id: number): Observable<Parfum> {
-    const url = `${apiURL}/${id}`;
+    const url = `${apiURL}/getbyid/${id}`;
     return this.http.get<Parfum>(url);
   }
   trierParfums() {
@@ -51,13 +54,15 @@ export class ParfumService {
     });
   }
   updateParfum(p: Parfum): Observable<Parfum> {
-    return this.http.put<Parfum>(apiURL, p, httpOptions);
+    
+    return this.http.put<Parfum>(apiURL + "/updateparfum", p);
   }
   listeMarque(): Observable<MarqueWrapper> {
     return this.http.get<MarqueWrapper>(apiURLMarque);
   }
 
   consulterMarque(id: number): Marque {
+
     return this.marques.find(m => m.id == id)!;
   }
   rechercherParMarque(idMarq: number): Observable<Parfum[]> {
@@ -68,14 +73,14 @@ export class ParfumService {
     const url = `${apiURL}/parfumsByName/${nom}`;
     return this.http.get<Parfum[]>(url);
   }
-  ajouterMarque(maq:Marque):Observable<Marque>{
-    return this.http.post<Marque>(apiURLMarque, maq,httpOptions);
-   }
+  ajouterMarque(maq: Marque): Observable<Marque> {
+    return this.http.post<Marque>(apiURLMarque, maq, httpOptions);
+  }
 
-   supprimerMarque(id : number) {
+  supprimerMarque(id: number) {
     const url = `${apiURLMarque}/${id}`;
     return this.http.delete(url, httpOptions);
-    } 
+  }
 
 
 }
