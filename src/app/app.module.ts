@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ParfumsComponent } from './parfums/parfums.component';
 import { AddParfumComponent } from './add-parfum/add-parfum.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateParfumComponent } from './update-parfum/update-parfum.component';
 import { HttpClientXsrfModule } from '@angular/common/http';
-import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RechercheParMarqueComponent } from './recherche-par-marque/recherche-par-marque.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -17,6 +17,10 @@ import { UpdateMarquesComponent } from './update-marques/update-marques.componen
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { tokenInterceptor } from './token.interceptor';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { tokenInterceptor } from './token.interceptor';
     ListeMarquesComponent,
     UpdateMarquesComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent,
+    VerifEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -39,14 +45,19 @@ import { tokenInterceptor } from './token.interceptor';
     FormsModule,
     HttpClientXsrfModule,
     HttpClientModule,
-    
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [
     provideClientHydration(),
-    { provide : HTTP_INTERCEPTORS,
-      useClass : tokenInterceptor,
-      multi : true}
-      
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: tokenInterceptor,
+      multi: true
+    }
+
 
   ],
   bootstrap: [AppComponent]

@@ -9,6 +9,8 @@ import { ListeMarquesComponent } from './liste-marques/liste-marques.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { parfumGuard } from './parfum.guard';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 
 const routes: Routes = [
   {path: "parfums", component : ParfumsComponent},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: "rechercheParNom", component : RechercheParNomComponent},
   {path: "listeMarques", component : ListeMarquesComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'app-forbidden', component: ForbiddenComponent}
+  {path: 'app-forbidden', component: ForbiddenComponent},
+  {path:'register',component:RegisterComponent},
+  { path: 'verifEmail', component: VerifEmailComponent }
 ];
 
 @NgModule({
