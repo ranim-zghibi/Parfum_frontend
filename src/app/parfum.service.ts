@@ -35,8 +35,8 @@ export class ParfumService {
   ajouterParfum(parfum: Parfum): Observable<Parfum> {
     return this.http.post<Parfum>(apiURL + "/addparfum", parfum);
   }
-  supprimerParfum(p: Parfum) {
-    const url = `${apiURL}/delparfum/${p.idParfum}`;
+  supprimerParfum(idParfum: number) {
+    const url = `${apiURL}/delparfum/${idParfum}`;
     return this.http.delete(url);
   }
   consulterParfum(id: number): Observable<Parfum> {

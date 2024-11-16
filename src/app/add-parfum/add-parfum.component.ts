@@ -58,7 +58,7 @@ export class AddParfumComponent implements OnInit {
           });
       }*/
 
-          addParfum() {
+        /*  addParfum() {
             this.newParfum.marque= this.marques.find(cat => cat.id == this.newIdMarque)!;
             this.parfumService
               .ajouterParfum(this.newParfum)
@@ -71,7 +71,18 @@ export class AddParfumComponent implements OnInit {
                 this.router.navigate(['parfums']);
               });
           }
-
+*/
+addParfum() {
+  this.newParfum.marque = this.marques.find(marq => marq.id == this.newIdMarque)!;
+  this.parfumService
+    .ajouterParfum(this.newParfum)
+    .subscribe((parfum) => {
+      this.parfumService
+        .uploadImageProd(this.uploadedImage, this.uploadedImage.name, parfum.idParfum!)
+        .subscribe((response: any) => { this.router.navigate(['parfums']); }
+        );
+    });
+}
   
   onImageUpload(event: any) {
     this.uploadedImage = event.target.files[0];
@@ -79,5 +90,4 @@ export class AddParfumComponent implements OnInit {
     reader.readAsDataURL(this.uploadedImage);
     reader.onload = (_event) => { this.imagePath = reader.result; }
     }
-
 }

@@ -34,15 +34,19 @@ export class RegisterComponent {
       next: (res) => {
         this.authService.setRegistredUser(this.user);
         this.loading = false;
-        this.toastr.success('veillez confirmer votre email', 'Confirmation');
-
+        this.toastr.success('Veuillez confirmer votre email', 'Confirmation');
         this.router.navigate(["/verifEmail"]);
       },
       error: (err: any) => {
-        if (err.status = 400) {
+        this.loading = false;
+        if (err.status === 400 && err.error && err.error.message) {
           this.err = err.error.message;
+        } else {
+          this.err = "Une erreur inattendue est survenue. Veuillez réessayer plus tard.";
         }
+        this.toastr.error(this.err, 'Erreur');
       }
     });
   }
+  
 }

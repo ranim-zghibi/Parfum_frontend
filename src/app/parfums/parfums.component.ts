@@ -41,7 +41,7 @@ export class ParfumsComponent implements OnInit {
     }
     */
 
-  /*chargerParfums(){
+  chargerParfums(){
     this.parfumService.listeParfum().subscribe(prods => {
       this.parfums = prods;
       this.parfums.forEach((prod) => {
@@ -49,22 +49,25 @@ export class ParfumsComponent implements OnInit {
         prod.images[0].image;
       });
     });
-  }*/
-
+  }
+/*
   chargerParfums() {
     this.parfumService.listeParfum().subscribe(parfs => {
       this.parfums = parfs;
     });
   }
 
-
+*/
 
   supprimerParfum(p: Parfum) {
-    let conf = confirm("Etes-vous sûr ?");
-    if (conf)
-      this.parfumService.supprimerParfum(p).subscribe(() => {
+    const conf = confirm("Etes-vous sûr ?");
+    if (conf) {
+      this.parfumService.supprimerParfum(p.idParfum!).subscribe(() => {
         console.log("Parfum supprimé");
         this.chargerParfums();
       });
+      
+    }
   }
+    
 }
